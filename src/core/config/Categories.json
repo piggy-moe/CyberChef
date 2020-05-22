@@ -118,7 +118,9 @@
             "Lorenz",
             "Colossus",
             "Piggy Cipher Encode",
-            "Piggy Cipher Decode"
+            "Piggy Cipher Decode",
+            "To Baudot Code",
+            "From Baudot Code"
         ]
     },
     {
