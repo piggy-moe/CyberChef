@@ -14,7 +14,7 @@ script:
   - npm test
   - grunt testnodeconsumer
   - grunt prod --msg="$COMPILE_MSG"
-  - xvfb-run --server-args="-screen 0 1200x800x24" grunt testui
+# - xvfb-run --server-args="-screen 0 1200x800x24" grunt testui
 before_deploy:
   - grunt exec:sitemap
   - grunt copy:ghPages
