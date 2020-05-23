@@ -51,8 +51,6 @@ import "./tests/Hexdump.mjs";
 import "./tests/Image.mjs";
 import "./tests/IndexOfCoincidence.mjs";
 import "./tests/Jump.mjs";
-import "./tests/JSONBeautify.mjs";
-import "./tests/JSONMinify.mjs";
 import "./tests/JSONtoCSV.mjs";
 import "./tests/JWTDecode.mjs";
 import "./tests/JWTSign.mjs";

@@ -48,7 +48,6 @@ module.exports = {
         browser.expect.element("//li[contains(@class, 'operation') and text()='Extract dates']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='Gzip']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='Keccak']").to.be.present;
-        browser.expect.element("//li[contains(@class, 'operation') and text()='JSON Beautify']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='Detect File Type']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='Play Media']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='Disassemble x86']").to.be.present;
