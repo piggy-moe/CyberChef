@@ -584,13 +584,6 @@ Password: 034148`;
         assert.strictEqual(result.toString(), expected);
     }),
 
-    it("Generate PGP Key Pair", async () => {
-        const result = await chef.generatePGPKeyPair("Back To the Drawing Board", {
-            keyType: "ECC-256",
-        });
-        assert.strictEqual(result.toString().length, 2007);
-    }),
-
     it("Generate UUID", () => {
         const result = chef.generateUUID();
         assert.ok(result.toString());
@@ -700,107 +693,6 @@ OS
 CPU
     Architecture: amd64`;
         assert.strictEqual(result.toString(), expected);
-    }),
-
-    it("PGP Encrypt and decrypt", async () => {
-        const pbkey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
-Version: Keybase OpenPGP v2.1.3
-Comment: https://keybase.io/crypto
-
-xo0EXZtlowEEAKUqTFownTmqgXWu2KDrtyNYtFck7a16WM5QD95bFoAFFdnlwZ45
-6Vw8G8LCzHdyRXYp/JF1GknDrAd7nIRE+SuSz2yVK5nlOCfO1HFcg2Ov7e7/pBwd
-qawx9GUIsCKd/6NxwDuT4YqarLFsuwljRC/eQiibO+ejnhoiKcU69sTNABEBAAHN
-AMK0BBMBCgAeBQJdm2WjAhsvAwsJBwMVCggCHgECF4ADFgIBAhkBAAoJEGS79V2S
-7D0owtMD/RT+o4BQJ8NSQBDgkYf42uOOu1Ud6GuN89nX6n20yAZbmqQ8CHnHY+Qc
-l6ft4HnbIaNrI3arp/C2C+cwFypmt1BKyFEJUXO7ft3i/IxnjpCorDyAMCDckDvq
-uma1LWtUHLb5s/ZuGMSHnhuji74IRWuIofNPdf7bCZW1GMbW9jNUzo0EXZtlowEE
-AL38zaNkPmUVQaowP696fayBo18Nxs0yOzC4+0TYv1B/k5aUb0Air2h+o/Xw4E42
-Jh9gVdPSvhOAEqdV0UDe71wxa4cfAVMDY9v8ta81MWunChj3ISUk1oIQylTJNsY/
-b4KWOrLaOtBD9dyFGCzss5vLVdqdMjVIW2Cz0hb6IYG7ABEBAAHCwIMEGAEKAA8F
-Al2bZaMFCQ8JnAACGy4AqAkQZLv1XZLsPSidIAQZAQoABgUCXZtlowAKCRA16MU2
-u2hFTX+JBACZ27xk0Afny2jjSoRzqLMrhzE7DBGcg2QqecMdNre12hVompAWcS4l
-NFmPShKRi6UT8Zb38nD43vwfqwZImn60dOPqqAep3YF/Axm1u5HJb0aMEsb8O9jV
-sVmNJv9jVTzPdlTGFQjuaeJfk5lwxB+5/O9NcgDhPgRAk9xb4FrT+xzmA/4tD11C
-AdcITUkTZT4ZOo2418DGeaiaEqWcIkZeQG4Vh5TMj4QtZDwsYQhXPl5Zj1zKIN/1
-gRrKC+ztaQoDG8pJXTTtc9inRU++dhMqnRGrPcz0VfVXFaiH7PUCy+4WpP6r5Bs5
-YQ9ESHo+FsmIvDzU3e/PD0SfXfO4vqBrFYN8986NBF2bZaMBBADJafe0w9diaCNx
-3A7e8MqjbNrhrLkD2cPxXspCATX3SuI19d2+hMiHZfKTyadBTIa+ICxvqoxwxyZD
-raHSY3CWVZd1V4KB5mqf+3Zj5riLeGU0dtXwi/5c0bdUhBUgHiAMhi75p05jYih5
-KsNxPcK9hEwPu7B+QeHURMiIgojTGQARAQABwsCDBBgBCgAPBQJdm2WjBQkDwmcA
-AhsuAKgJEGS79V2S7D0onSAEGQEKAAYFAl2bZaMACgkQzdkMJSM5Bqg2rwP/Ue28
-m3Fdfgh5JxouZ3Dm2KUDhZL95B+vdMk72acdoU7SRjlyDT8cApRqYx+MIXb8WrPN
-1xCZnOM4zXeWIM0CAPQ1e/sCrK58L+P+eVngNmrW9epKtZ4L6hx+dqqja9vPZGQK
-CsFAhA6A1gWB++OLk9Y6H23tWIdKEXMeAX7492zDYgP+OSPS79EWAqXL8SvmDrbl
-WI5eiM6X5hAMrOjQqzXhatD7eP41N/FC3SfhyhX7hFbagO7MJG2AS5bmSvcuCdcN
-wDwXd94B+7bfYgJIRKbr272yDwkyzGn+zmxzvMUt6ak5PNzfmadvhMZvIfDftswp
-GYpXIUU0GObOgP2tpCGTErs=
-=m++F
------END PGP PUBLIC KEY BLOCK-----`;
-        const privateKey = `-----BEGIN PGP PRIVATE KEY BLOCK-----
-Version: Keybase OpenPGP v2.1.3
-Comment: https://keybase.io/crypto
-
-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
-pCGTErs=
-=Ya+/
------END PGP PRIVATE KEY BLOCK-----`;
-
-        const message = "A Fool and His Money are Soon Parted";
-
-        const encrypted = await chef.PGPEncrypt(message, {
-            publicKeyOfRecipient: pbkey,
-        });
-        const result = await chef.PGPDecrypt(encrypted, {
-            privateKeyOfRecipient: privateKey,
-        });
-
-        assert.strictEqual(result.toString(), message);
     }),
 
     it("Raw deflate", () => {
