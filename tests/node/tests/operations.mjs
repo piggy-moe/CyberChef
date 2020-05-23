@@ -29,7 +29,6 @@ import {
     bifidCipherEncode,
     bitShiftRight,
     cartesianProduct,
-    CSSMinify,
     toBase64,
     toHex
 } from "../../../src/node/index";
@@ -313,28 +312,6 @@ Full hash: $2a$10$ODeP1.6fMsb.ENk2ngPUCO7qTGVPyHA9TqDVcyupyed8FjsiF65L6`;
     it("CRC32 Checksum", () => {
         const result = chef.CRC32Checksum("Rain on Your Parade");
         assert.strictEqual(result.toString(), "e902f76c");
-    }),
-
-    it("CSS Beautify", () => {
-        const result = chef.CSSBeautify("header {color:black;padding:3rem;}");
-        const expected = `header {
-\\tcolor:black;
-\\tpadding:3rem;
-}
-`;
-        assert.strictEqual(result.toString(), expected);
-    }),
-
-    it("CSS minify: boolean", () => {
-        const input = `header {
-// comment
-width: 100%;
-color: white;
-}`;
-        const result = CSSMinify(input, {
-            preserveComments: true,
-        });
-        assert.strictEqual(result.toString(), "header {// comment width: 100%;color: white;}");
     }),
 
     it("CSS Selector", () => {
@@ -623,14 +600,6 @@ WWFkYSBZYWRh\r
         assert.strictEqual(chef.JPathExpression("{\"key\" : \"value\"}", {query: "$.key"}).toString(), "\"value\"");
     }),
 
-    it("JSON Beautify", () => {
-        assert.strictEqual(
-            chef.JSONBeautify("{\"key\" : \"value\"}").toString(),
-            `{
-    "key": "value"
-}`);
-    }),
-
     it("Keccak", () => {
         assert.strictEqual(chef.keccak("Flea Market").toString(), "c2a06880b19e453ee5440e8bd4c2024bedc15a6630096aa3f609acfd2b8f15f27cd293e1cc73933e81432269129ce954a6138889ce87831179d55dcff1cc7587");
     }),
@@ -858,17 +827,6 @@ pCGTErs=
             "a671b48770fe073ce49e9259cc2f47d345a53712639f8ae23c5ad3fec19540a5");
     }),
 
-    it("SQL Beautify", () => {
-        const result = chef.SQLBeautify(`SELECT MONTH, ID, RAIN_I, TEMP_F 
-FROM STATS;`);
-        const expected = `SELECT MONTH,
-         ID,
-         RAIN_I,
-         TEMP_F
-FROM STATS;`;
-        assert.strictEqual(result.toString(), expected);
-    }),
-
     it("SSDEEP", () => {
         assert.strictEqual(
             chef.SSDEEP("shotgun tyranny snugly").toString(),
@@ -955,14 +913,6 @@ smothering ampersand abreast
 
     it("UNIX Timestamp to Windows Filetime", () => {
         assert.strictEqual(chef.UNIXTimestampToWindowsFiletime("2020735").toString(), "116464943350000000");
-    }),
-
-    it("XML Beautify", () => {
-        assert.strictEqual(
-            chef.XMLBeautify("<contact-info><company>abc</company></contact-info>").toString(),
-            `<contact-info>
-\\t<company>abc</company>
-</contact-info>`);
     }),
 
     it("XOR: toggleString with default option", () => {
