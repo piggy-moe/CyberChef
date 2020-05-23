@@ -132,12 +132,6 @@
             "Hex to PEM",
             "Hex to Object Identifier",
             "Object Identifier to Hex",
-            "Generate PGP Key Pair",
-            "PGP Encrypt",
-            "PGP Decrypt",
-            "PGP Verify",
-            "PGP Encrypt and Sign",
-            "PGP Decrypt and Verify",
             "Parse SSH Host Key"
         ]
     },
