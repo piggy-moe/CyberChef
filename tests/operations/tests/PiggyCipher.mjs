@@ -12,20 +12,22 @@ TestRegister.addTests([
     {
         name: "To Piggy Cipher",
         input: "I'm piggy!",
-        expectedOutput: "PiGgy PIggy PiGGy PIggY PigGy Piggy PiGGY PiGgy PiGGy PIggy PiGGy PiGgY PiGGY PigGy PiGGy PiGgY",
+        expectedOutput: "PiGgy PIggY PigGy PiGGY PiGGy PIGgY PigGy Piggy PiGGY Piggy PiGGy PIggY PiGGy PiGGY PiGGy PiGGY PiGGY PIggY PigGy PiggY",
         recipeConfig: [
             {
-                op: "To Piggy Cipher",
+                op: "Piggy Cipher Encode",
+                args: [],
             },
         ],
     },
     {
         name: "From Piggy Cipher",
-        input: "PiGgy PIggy PiGGy PIggY PigGy Piggy PiGGY PiGgy PiGGy PIggy PiGGy PiGgY PiGGY PigGy PiGGy PiGgY",
+        input: "PiGgy PIggY PigGy PiGGY PiGGy PIGgY PigGy Piggy PiGGY Piggy PiGGy PIggY PiGGy PiGGY PiGGy PiGGY PiGGY PIggY PigGy PiggY",
         expectedOutput: "I'm piggy!",
         recipeConfig: [
             {
-                op: "From Piggy Cipher",
+                op: "Piggy Cipher Decode",
+                args: [],
             },
         ],
     },
