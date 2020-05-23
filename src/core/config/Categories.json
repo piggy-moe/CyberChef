@@ -347,9 +347,6 @@
         "ops": [
             "Syntax highlighter",
             "Generic Code Beautify",
-            "JavaScript Parser",
-            "JavaScript Beautify",
-            "JavaScript Minify",
             "JSON Beautify",
             "JSON Minify",
             "XML Beautify",
