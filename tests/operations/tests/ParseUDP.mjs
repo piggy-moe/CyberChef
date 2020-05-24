@@ -23,8 +23,46 @@ TestRegister.addTests([
                 args: [],
             },
             {
-                op: "JSON Minify",
-                args: [],
+                op: "Find / Replace",
+                args: [
+                    {
+                        option: "Regex",
+                        string: "\\s+",
+                    },
+                    "",
+                    true,
+                    false,
+                    false,
+                    false,
+                ],
+            },
+            {
+                op: "Find / Replace",
+                args: [
+                    {
+                        option: "Simple string",
+                        string: "Sourceport",
+                    },
+                    "Source port",
+                    false,
+                    false,
+                    false,
+                    false,
+                ],
+            },
+            {
+                op: "Find / Replace",
+                args: [
+                    {
+                        option: "Simple string",
+                        string: "Destinationport",
+                    },
+                    "Destination port",
+                    false,
+                    false,
+                    false,
+                    false,
+                ],
             },
         ],
     }, {
@@ -41,8 +79,46 @@ TestRegister.addTests([
                 args: [],
             },
             {
-                op: "JSON Minify",
-                args: [],
+                op: "Find / Replace",
+                args: [
+                    {
+                        option: "Regex",
+                        string: "\\s+",
+                    },
+                    "",
+                    true,
+                    false,
+                    false,
+                    false,
+                ],
+            },
+            {
+                op: "Find / Replace",
+                args: [
+                    {
+                        option: "Simple string",
+                        string: "Sourceport",
+                    },
+                    "Source port",
+                    false,
+                    false,
+                    false,
+                    false,
+                ],
+            },
+            {
+                op: "Find / Replace",
+                args: [
+                    {
+                        option: "Simple string",
+                        string: "Destinationport",
+                    },
+                    "Destination port",
+                    false,
+                    false,
+                    false,
+                    false,
+                ],
             },
         ],
     },
@@ -60,8 +136,46 @@ TestRegister.addTests([
                 args: [],
             },
             {
-                op: "JSON Minify",
-                args: [],
+                op: "Find / Replace",
+                args: [
+                    {
+                        option: "Regex",
+                        string: "\\s+",
+                    },
+                    "",
+                    true,
+                    false,
+                    false,
+                    false,
+                ],
+            },
+            {
+                op: "Find / Replace",
+                args: [
+                    {
+                        option: "Simple string",
+                        string: "Sourceport",
+                    },
+                    "Source port",
+                    false,
+                    false,
+                    false,
+                    false,
+                ],
+            },
+            {
+                op: "Find / Replace",
+                args: [
+                    {
+                        option: "Simple string",
+                        string: "Destinationport",
+                    },
+                    "Destination port",
+                    false,
+                    false,
+                    false,
+                    false,
+                ],
             },
         ],
     }
