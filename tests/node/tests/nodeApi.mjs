@@ -139,13 +139,6 @@ TestRegister.addApiTests([
         assert.strictEqual(result.length, 11);
     }),
 
-    it("chef.help: looks in description for matches too", () => {
-        // string only in one operation's description.
-        const result = chef.help("Converts a unit of data to another format.");
-        assert.strictEqual(result.length, 1);
-        assert.strictEqual(result[0].name, "Convert data units");
-    }),
-
     it("chef.help: lists name matches before desc matches", () => {
         const result = chef.help("Checksum");
         assert.ok(result[0].name.includes("Checksum"));
@@ -389,20 +382,4 @@ TestRegister.addApiTests([
         });
     }),
 
-    it("Operation arguments: should have key for each argument in operation", () => {
-        assert.ok(chef.convertDistance.args.inputUnits);
-        assert.ok(chef.convertDistance.args.outputUnits);
-
-        assert.strictEqual(chef.bitShiftRight.args.amount.type, "number");
-        assert.strictEqual(chef.bitShiftRight.args.amount.value, 1);
-        assert.strictEqual(chef.bitShiftRight.args.type.type, "option");
-        assert.ok(Array.isArray(chef.bitShiftRight.args.type.options));
-
-    }),
-
-    it("Operation arguments: should list all options excluding subheadings", () => {
-        // First element (subheading) removed
-        assert.equal(chef.convertDistance.args.inputUnits.options[0], "Nanometres (nm)");
-        assert.equal(chef.defangURL.args.process.options[1], "Only full URLs");
-    }),
 ]);

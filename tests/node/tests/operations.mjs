@@ -254,46 +254,6 @@ Full hash: $2a$10$ODeP1.6fMsb.ENk2ngPUCO7qTGVPyHA9TqDVcyupyed8FjsiF65L6`;
         assert.strictEqual(result.toString(), "0");
     }),
 
-    it("Convert area", () => {
-        const result = chef.convertArea("12345", {
-            inputUnits: "Square metre (sq m)",
-            outputUnits: "Isle of Wight"
-        });
-        assert.strictEqual(result.toString(), "0.00003248684210526316");
-    }),
-
-    it("Convert data units", () => {
-        const result = chef.convertDataUnits("12345", {
-            inputUnits: "Bits (b)",
-            outputUnits: "Kilobytes (KB)",
-        });
-        assert.strictEqual(result.toString(), "1.543125");
-    }),
-
-    it("Convert distance", () => {
-        const result = chef.convertDistance("1234567", {
-            inputUnits: "Nanometres (nm)",
-            outputUnits: "Furlongs (fur)",
-        });
-        assert.strictEqual(result.toString(), "0.00000613699494949495");
-    }),
-
-    it("Convert mass", () => {
-        const result = chef.convertMass("123", {
-            inputUnits: "Earth mass (M⊕)",
-            outputUnits: "Great Pyramid of Giza (6,000,000 tonnes)",
-        });
-        assert.strictEqual(result.toString(), "122429895000000000");
-    }),
-
-    it("Convert speed", () => {
-        const result = chef.convertSpeed("123", {
-            inputUnits: "Lunar escape velocity",
-            outputUnits: "Jet airliner cruising speed",
-        });
-        assert.strictEqual(result.toString(), "1168.5");
-    }),
-
     it("Count occurrences", () => {
         const result = chef.countOccurrences("Talk the Talk", {
             searchString: {
