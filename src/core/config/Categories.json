@@ -266,7 +266,6 @@
             "Extract file paths",
             "Extract dates",
             "Regular expression",
-            "JPath expression",
             "Extract EXIF",
             "Extract Files"
         ]

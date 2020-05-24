@@ -118,7 +118,6 @@
     "js-crc": "^0.2.0",
     "js-sha3": "^0.8.0",
     "jsesc": "^2.5.2",
-    "jsonpath": "^1.0.2",
     "jsonwebtoken": "^8.5.1",
     "jsqr": "^1.2.0",
     "jsrsasign": "8.0.12",
