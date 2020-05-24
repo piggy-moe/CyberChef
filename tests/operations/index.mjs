@@ -61,7 +61,6 @@ import "./tests/MorseCode.mjs";
 import "./tests/NetBIOS.mjs";
 import "./tests/NormaliseUnicode.mjs";
 import "./tests/OTP.mjs";
-import "./tests/PGP.mjs";
 import "./tests/PHP.mjs";
 import "./tests/ParseIPRange.mjs";
 import "./tests/ParseQRCode.mjs";

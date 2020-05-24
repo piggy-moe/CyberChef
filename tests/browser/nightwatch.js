@@ -146,10 +146,6 @@ module.exports = {
         loadOp("Extract EXIF", browser)
             .waitForElementNotVisible("#output-loader", 5000);
 
-        // PGP
-        loadOp("PGP Encrypt", browser)
-            .waitForElementNotVisible("#output-loader", 5000);
-
         // PublicKey
         loadOp("Hex to PEM", browser)
             .waitForElementNotVisible("#output-loader", 5000);
