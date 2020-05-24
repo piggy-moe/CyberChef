@@ -274,13 +274,6 @@ Full hash: $2a$10$ODeP1.6fMsb.ENk2ngPUCO7qTGVPyHA9TqDVcyupyed8FjsiF65L6`;
         assert.strictEqual(result.toString(), "e902f76c");
     }),
 
-    it("CSS Selector", () => {
-        const result = chef.CSSSelector("<html><header><h1>Hello</h1></header></html>", {
-            cssSelector: "h1",
-        });
-        assert.strictEqual(result.toString(), "<h1>Hello</h1>");
-    }),
-
     it("CTPH", () => {
         const result = chef.CTPH("If You Can't Stand the Heat, Get Out of the Kitchen");
         assert.strictEqual(result.toString(), "A:+EgFgBKAA0V0UFfClEs6:+Qk0gUFse");
@@ -549,10 +542,6 @@ WWFkYSBZYWRh\r
         assert.strictEqual(chef.HMAC("On Cloud Nine", {key: "idea"}).toString(), "e15c268b4ee755c9e52db094ed50add7");
     }),
 
-    it("JPathExpression", () => {
-        assert.strictEqual(chef.JPathExpression("{\"key\" : \"value\"}", {query: "$.key"}).toString(), "\"value\"");
-    }),
-
     it("Keccak", () => {
         assert.strictEqual(chef.keccak("Flea Market").toString(), "c2a06880b19e453ee5440e8bd4c2024bedc15a6630096aa3f609acfd2b8f15f27cd293e1cc73933e81432269129ce954a6138889ce87831179d55dcff1cc7587");
     }),
@@ -770,12 +759,6 @@ smothering ampersand abreast
             }
         }).toString(),
         "QV\u0010\u0004UDWQ");
-    }),
-
-    it("XPath expression", () => {
-        assert.strictEqual(
-            chef.XPathExpression("<contact-info><company>abc</company></contact-info>", {xPath: "contact-info/company"}).toString(),
-            "<company>abc</company>");
     }),
 
     it("Zlib deflate / inflate", () => {

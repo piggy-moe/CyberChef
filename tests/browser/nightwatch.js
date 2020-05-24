@@ -114,10 +114,6 @@ module.exports = {
         loadOp("AES Encrypt", browser)
             .waitForElementNotVisible("#output-loader", 5000);
 
-        // Code
-        loadOp("XPath expression", browser)
-            .waitForElementNotVisible("#output-loader", 5000);
-
         // Compression
         loadOp("Gzip", browser)
             .waitForElementNotVisible("#output-loader", 5000);
