@@ -322,34 +322,6 @@ TestRegister.addApiTests([
         assert.strictEqual(result.toString(), "DotDotDot\\DashDashDash\\DashDash\\Dot,DotDot\\DashDot\\DotDashDashDot\\DotDotDash\\Dash");
     }),
 
-    it("chef.bake: should take compact JSON format from Chef Website as recipe", () => {
-        const result = chef.bake("some input", [{"op": "To Morse Code", "args": ["Dash/Dot", "Backslash", "Comma"]}, {"op": "Hex to PEM", "args": ["SOMETHING"]}, {"op": "To Snake case", "args": [false]}]);
-        assert.strictEqual(result.toString(), "begin_something_anananaaaaak_da_aaak_da_aaaaananaaaaaaan_da_aaaaaaanan_da_aaak_end_something");
-    }),
-
-    it("chef.bake: should accept Clean JSON format from Chef website as recipe", () => {
-        const result = chef.bake("some input", [
-            { "op": "To Morse Code",
-                "args": ["Dash/Dot", "Backslash", "Comma"] },
-            { "op": "Hex to PEM",
-                "args": ["SOMETHING"] },
-            { "op": "To Snake case",
-                "args": [false] }
-        ]);
-        assert.strictEqual(result.toString(), "begin_something_anananaaaaak_da_aaak_da_aaaaananaaaaaaan_da_aaaaaaanan_da_aaak_end_something");
-    }),
-
-    it("chef.bake: should accept Clean JSON format from Chef website - args optional", () => {
-        const result = chef.bake("some input", [
-            { "op": "To Morse Code" },
-            { "op": "Hex to PEM",
-                "args": ["SOMETHING"] },
-            { "op": "To Snake case",
-                "args": [false] }
-        ]);
-        assert.strictEqual(result.toString(), "begin_something_aaaaaaaaaaaaaa_end_something");
-    }),
-
     it("Excluded operations: throw a sensible error when you try and call one", () => {
         try {
             chef.fork();

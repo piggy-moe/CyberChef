@@ -719,10 +719,6 @@ smothering ampersand abreast
         assert.strictEqual(chef.toBCD("443").toString(), "0100 0100 0011");
     }),
 
-    it("To CamelCase", () => {
-        assert.strictEqual(chef.toCamelCase("Quickest Wheel").toString(), "quickestWheel");
-    }),
-
     it("toHex: accepts args", () => {
         const result = toHex("some input", {
             delimiter: "Colon",
@@ -730,16 +726,8 @@ smothering ampersand abreast
         assert.strictEqual(result.toString(), "73:6f:6d:65:20:69:6e:70:75:74");
     }),
 
-    it("To Kebab case", () => {
-        assert.strictEqual(chef.toKebabCase("Elfin Gold").toString(), "elfin-gold");
-    }),
-
     it("To punycode", () => {
         assert.strictEqual(chef.toPunycode("♠ ♣ ♥ ♦ ← ↑ ‍ →").toString(), "       -m06cw7klao368lfb3aq");
-    }),
-
-    it("to snake case", () => {
-        assert.strictEqual(chef.toSnakeCase("Abhorrent Grass").value, "abhorrent_grass");
     }),
 
     it("to unix timestamp", () => {
