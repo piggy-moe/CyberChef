@@ -13,7 +13,4 @@ export default  [
     "ConditionalJump",
     "Label",
     "Comment",
-
-    // Irrelevant in Node console
-    "SyntaxHighlighter",
 ];

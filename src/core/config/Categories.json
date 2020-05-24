@@ -343,7 +343,6 @@
     {
         "name": "Code tidy",
         "ops": [
-            "Syntax highlighter",
             "Generic Code Beautify",
             "XPath expression",
             "JPath expression",
@@ -359,7 +358,6 @@
             "BSON deserialise",
             "To MessagePack",
             "From MessagePack",
-            "Render Markdown"
         ]
     },
     {
