@@ -250,7 +250,6 @@
             "To UNIX Timestamp",
             "Windows Filetime to UNIX Timestamp",
             "UNIX Timestamp to Windows Filetime",
-            "Extract dates",
             "Sleep"
         ]
     },
@@ -258,13 +257,6 @@
         "name": "Extractors",
         "ops": [
             "Strings",
-            "Extract IP addresses",
-            "Extract email addresses",
-            "Extract MAC addresses",
-            "Extract URLs",
-            "Extract domains",
-            "Extract file paths",
-            "Extract dates",
             "Regular expression",
             "Extract EXIF",
             "Extract Files"

@@ -39,7 +39,6 @@ import "./tests/ConditionalJump.mjs";
 import "./tests/Crypt.mjs";
 import "./tests/CSV.mjs";
 import "./tests/DateTime.mjs";
-import "./tests/ExtractEmailAddresses.mjs";
 import "./tests/Fork.mjs";
 import "./tests/FromDecimal.mjs";
 import "./tests/Gzip.mjs";

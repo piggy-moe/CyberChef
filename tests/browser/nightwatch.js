@@ -45,7 +45,6 @@ module.exports = {
         browser.expect.element("//li[contains(@class, 'operation') and text()='Remove Diacritics']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='Sort']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='To UNIX Timestamp']").to.be.present;
-        browser.expect.element("//li[contains(@class, 'operation') and text()='Extract dates']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='Gzip']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='Keccak']").to.be.present;
         browser.expect.element("//li[contains(@class, 'operation') and text()='Detect File Type']").to.be.present;

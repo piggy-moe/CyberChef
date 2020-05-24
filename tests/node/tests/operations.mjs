@@ -400,10 +400,6 @@ Full hash: $2a$10$ODeP1.6fMsb.ENk2ngPUCO7qTGVPyHA9TqDVcyupyed8FjsiF65L6`;
             "Ftitgthttt tFtitrtet tWtitttht tFtitrte");
     }),
 
-    it("Extract dates", () => {
-        assert.strictEqual(chef.extractDates("Don't Look a Gift Horse In The Mouth 01/02/1992").toString(), "01/02/1992\n");
-    }),
-
     it("Filter", () => {
         const result = chef.filter(
             `I Smell a Rat
