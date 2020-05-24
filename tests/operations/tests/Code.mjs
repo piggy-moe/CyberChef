@@ -51,7 +51,7 @@ const JSON_TEST_DATA = {
 };
 
 TestRegister.addTests([
-   {
+    {
         name: "To MessagePack: no content",
         input: "",
         expectedMatch: /Unexpected end of JSON input/,
