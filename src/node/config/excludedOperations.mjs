@@ -14,11 +14,6 @@ export default  [
     "Label",
     "Comment",
 
-    // esprima doesn't work in .mjs
-    "JavaScriptBeautify",
-    "JavaScriptMinify",
-    "JavaScriptParser",
-
     // Irrelevant in Node console
     "SyntaxHighlighter",
 ];
