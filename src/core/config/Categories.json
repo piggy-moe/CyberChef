@@ -336,10 +336,6 @@
     {
         "name": "Code tidy",
         "ops": [
-            "Generic Code Beautify",
-            "XPath expression",
-            "JPath expression",
-            "CSS selector",
             "PHP Deserialize",
             "Microsoft Script Decoder",
             "Strip HTML tags",
