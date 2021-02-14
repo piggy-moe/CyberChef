@@ -79,7 +79,6 @@ import "./tests/TranslateDateTimeFormat.mjs";
 import "./tests/Magic.mjs";
 import "./tests/ParseTLV.mjs";
 import "./tests/Media.mjs";
-import "./tests/ToFromInsensitiveRegex.mjs";
 import "./tests/YARA.mjs";
 import "./tests/ConvertCoordinateFormat.mjs";
 import "./tests/Enigma.mjs";
