@@ -110,7 +110,6 @@
             "JWT Decode",
             "Citrix CTX1 Encode",
             "Citrix CTX1 Decode",
-            "Pseudo-Random Number Generator",
             "Enigma",
             "Bombe",
             "Multiple Bombe",
@@ -211,14 +210,6 @@
         "name": "Utils",
         "ops": [
             "Diff",
-            "Remove whitespace",
-            "Remove null bytes",
-            "To Upper case",
-            "To Lower case",
-            "To Case Insensitive Regex",
-            "From Case Insensitive Regex",
-            "Add line numbers",
-            "Remove line numbers",
             "To Table",
             "Reverse",
             "Sort",
@@ -228,10 +219,8 @@
             "Head",
             "Tail",
             "Count occurrences",
-            "Expand alphabet range",
             "Drop bytes",
             "Take bytes",
-            "Pad lines",
             "Find / Replace",
             "Regular expression",
             "Fuzzy Match",
@@ -244,8 +233,7 @@
             "Swap endianness",
             "Parse colour code",
             "Escape string",
-            "Unescape string",
-            "Pseudo-Random Number Generator"
+            "Unescape string"
         ]
     },
     {
@@ -401,7 +389,6 @@
             "Index of Coincidence",
             "Chi Square",
             "Disassemble x86",
-            "Pseudo-Random Number Generator",
             "Generate UUID",
             "Generate TOTP",
             "Generate HOTP",
