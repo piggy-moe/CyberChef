@@ -1,3 +1,31 @@
+# CyberChef - Piggy's Fork
+
+A fork of [gchq/CyberChef](https://github.com/gchq/CyberChef) aims to provide more useful operations.
+
+**Goals**
+
+- Keep updated with upstream.
+
+- Remove large but seldom used operations.
+
+  For example, OCR takes up almost 1/3 of the bundle size but it is rarely used.
+
+- Remove operations that can be simply substituted by another.
+
+  For example, `ToUpperCase()` can be replaced with `Substitute("abcdef"..., "ABCDEF"...)`.
+
+- Enhance existing operations, including adding more parameters.
+
+- Add more operations, especially in encoding/encryption.
+
+- All pull requests that do not against the goals above are welcomed.
+
+A brief difference between this fork and upstream is available at `src/core/config/Categories.json` in the [comparison](https://github.com/gchq/CyberChef/compare/master...piggymoe:master).
+
+The README from [gchq/CyberChef](https://github.com/gchq/CyberChef) is shown below.
+
+---
+
 # CyberChef
 
 [![](https://github.com/gchq/CyberChef/workflows/Master%20Build,%20Test%20&%20Deploy/badge.svg)](https://github.com/gchq/CyberChef/actions?query=workflow%3A%22Master+Build%2C+Test+%26+Deploy%22)
@@ -78,7 +106,7 @@ You can use as many operations as you like in simple or complex ways. Some examp
 By manipulation of CyberChef's URL hash, you can change the initial settings with which the page opens.
 The format is `https://gchq.github.io/CyberChef/#recipe=Operation()&input=...`
 
-Supported arguments are `recipe`, `input` (encoded in Base64), and `theme`. 
+Supported arguments are `recipe`, `input` (encoded in Base64), and `theme`.
 
 
 ## Browser support
