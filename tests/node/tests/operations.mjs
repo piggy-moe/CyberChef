@@ -21,7 +21,6 @@ import it from "../assertionHandler.mjs";
 import fs from "fs";
 
 import {
-    addLineNumbers,
     adler32Checksum,
     AESDecrypt,
     affineCipherDecode,
@@ -56,11 +55,6 @@ TestRegister.addApiTests([
             key: "4",
         });
         assert.strictEqual(result.toString(), "7");
-    }),
-
-    it("addLineNumbers: No arguments", () => {
-        const result = addLineNumbers("sample input");
-        assert.equal(result.toString(), "1 sample input");
     }),
 
     it("adler32Checksum: No args", () => {
@@ -392,12 +386,6 @@ Full hash: $2a$10$ODeP1.6fMsb.ENk2ngPUCO7qTGVPyHA9TqDVcyupyed8FjsiF65L6`;
 
     it("Escape unicode characters", () => {
         assert.strictEqual(chef.escapeUnicodeCharacters("σου").toString(), "\\u03C3\\u03BF\\u03C5");
-    }),
-
-    it("Expand alphabet range", () => {
-        assert.strictEqual(
-            chef.expandAlphabetRange("Fight Fire With Fire", {delimiter: "t"}).toString(),
-            "Ftitgthttt tFtitrtet tWtitttht tFtitrte");
     }),
 
     it("Filter", () => {
