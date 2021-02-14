@@ -7,10 +7,11 @@
 import Operation from "../Operation.mjs";
 import OperationError from "../errors/OperationError.mjs";
 import Utils from "../Utils.mjs";
-import {isImage} from "../lib/FileType";
-import {toBase64} from "../lib/Base64";
-import jimp from "jimp";
-import {isWorkerEnvironment} from "../Utils";
+import {isImage} from "../lib/FileType.mjs";
+import {toBase64} from "../lib/Base64.mjs";
+import {isWorkerEnvironment} from "../Utils.mjs";
+import jimplib from "jimp/es/index.js";
+const jimp = jimplib.default ? jimplib.default : jimplib;
 
 /**
  * Generate Image operation

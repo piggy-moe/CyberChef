@@ -60,7 +60,8 @@ class Lorenz extends Operation {
             },
             {
                 name: "KT-Schalter",
-                type: "boolean"
+                type: "boolean",
+                value: false
             },
             {
                 name: "Mode",
@@ -375,7 +376,7 @@ class Lorenz extends Operation {
             // Psi wheels only move sometimes, dependent on M37 current setting and limitations
 
             const basicmotor = m37lug;
-            let totalmotor = basicmotor;
+            let totalmotor;
             let lim = 0;
 
             p5[2] = p5[1];

@@ -18,15 +18,15 @@
             "From Binary",
             "To Octal",
             "From Octal",
-            "To Base64",
-            "From Base64",
-            "Show Base64 offsets",
             "To Base32",
             "From Base32",
             "To Base58",
             "From Base58",
             "To Base62",
             "From Base62",
+            "To Base64",
+            "From Base64",
+            "Show Base64 offsets",
             "To Base85",
             "From Base85",
             "To Base",
@@ -132,6 +132,11 @@
             "Hex to PEM",
             "Hex to Object Identifier",
             "Object Identifier to Hex",
+            "Generate RSA Key Pair",
+            "RSA Sign",
+            "RSA Verify",
+            "RSA Encrypt",
+            "RSA Decrypt",
             "Parse SSH Host Key"
         ]
     },
@@ -196,6 +201,7 @@
         "ops": [
             "Encode text",
             "Decode text",
+            "Unicode Text Format",
             "Remove Diacritics",
             "Unescape Unicode Characters",
             "Convert to NATO alphabet"
@@ -228,6 +234,7 @@
             "Pad lines",
             "Find / Replace",
             "Regular expression",
+            "Fuzzy Match",
             "Offset checker",
             "Hamming Distance",
             "Convert co-ordinate format",
@@ -250,6 +257,7 @@
             "To UNIX Timestamp",
             "Windows Filetime to UNIX Timestamp",
             "UNIX Timestamp to Windows Filetime",
+            "Get Time",
             "Sleep"
         ]
     },
@@ -259,6 +267,7 @@
             "Strings",
             "Regular expression",
             "Extract EXIF",
+            "Extract ID3",
             "Extract Files"
         ]
     },
@@ -292,6 +301,7 @@
             "SHA1",
             "SHA2",
             "SHA3",
+            "SM3",
             "Keccak",
             "Shake",
             "RIPEMD",

@@ -78,7 +78,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-chmod");
     grunt.loadNpmTasks("grunt-exec");
-    grunt.loadNpmTasks("grunt-accessibility");
     grunt.loadNpmTasks("grunt-concurrent");
     grunt.loadNpmTasks("grunt-contrib-connect");
     grunt.loadNpmTasks("grunt-zip");
@@ -175,7 +174,7 @@ module.exports = function (grunt) {
             // previous one fails. & would coninue on a fail
             .join("&&")
             // Windows does not support \n properly
-            .replace("\n", "\\n");
+            .replace(/\n/g, "\\n");
     }
 
     grunt.initConfig({
@@ -196,18 +195,6 @@ module.exports = function (grunt) {
             web: ["src/web/**/*.{js,mjs}", "!src/web/static/**/*"],
             node: ["src/node/**/*.{js,mjs}"],
             tests: ["tests/**/*.{js,mjs}"],
-        },
-        accessibility: {
-            options: {
-                accessibilityLevel: "WCAG2A",
-                verbose: false,
-                ignore: [
-                    "WCAG2A.Principle1.Guideline1_3.1_3_1.H42.2"
-                ]
-            },
-            test: {
-                src: ["build/**/*.html"]
-            }
         },
         webpack: {
             options: webpackConfig,
@@ -302,7 +289,7 @@ module.exports = function (grunt) {
                 },
                 files: [
                     {
-                        src: "build/prod/index.html",
+                        src: ["build/prod/index.html"],
                         dest: "build/prod/index.html"
                     }
                 ]
@@ -324,7 +311,7 @@ module.exports = function (grunt) {
                 },
                 files: [
                     {
-                        src: "build/prod/index.html",
+                        src: ["build/prod/index.html"],
                         dest: `build/prod/CyberChef_v${pkg.version}.html`
                     }
                 ]
@@ -424,6 +411,16 @@ module.exports = function (grunt) {
                 ]),
                 stdout: false,
             },
+            fixCryptoApiImports: {
+                command: [
+                    `[[ "$OSTYPE" == "darwin"* ]]`,
+                    "&&",
+                    `find ./node_modules/crypto-api/src/ \\( -type d -name .git -prune \\) -o -type f -print0 | xargs -0 sed -i '' -e '/\\.mjs/!s/\\(from "\\.[^"]*\\)";/\\1.mjs";/g'`,
+                    "||",
+                    `find ./node_modules/crypto-api/src/ \\( -type d -name .git -prune \\) -o -type f -print0 | xargs -0 sed -i -e '/\\.mjs/!s/\\(from "\\.[^"]*\\)";/\\1.mjs";/g'`
+                ].join(" "),
+                stdout: false
+            }
         },
     });
 };

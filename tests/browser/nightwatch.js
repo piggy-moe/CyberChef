@@ -5,6 +5,7 @@
  * @copyright Crown Copyright 2018
  * @license Apache-2.0
  */
+
 module.exports = {
     before: browser => {
         browser
@@ -207,7 +208,7 @@ module.exports = {
             .clearValue("#search")
             .setValue("#search", "md5")
             .useXpath()
-            .waitForElementVisible("//ul[@id='search-results']//u[text()='MD5']", 1000);
+            .waitForElementVisible("//ul[@id='search-results']//b[text()='MD5']", 1000);
     },
 
     after: browser => {

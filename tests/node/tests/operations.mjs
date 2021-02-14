@@ -547,7 +547,7 @@ WWFkYSBZYWRh\r
     }),
 
     it("Parse ASN.1 Hex string", () => {
-        assert.strictEqual(chef.parseASN1HexString(chef.toHex("Mouth-watering")).toString(), "UNKNOWN(4d) 7574682d7761746572696e67\n");
+        assert.strictEqual(chef.parseASN1HexString(chef.toHex("Mouth-watering")).toString(), "UNKNOWN(77) 7574682d7761746572696e67\n");
     }),
 
     it("Parse DateTime", () => {
@@ -563,7 +563,7 @@ Leap year: false
 Days in this month: 31
 
 Day of year: 187
-Week number: 2001
+Week number: 27
 Quarter: 3`;
         assert.strictEqual(result.toString(), expected);
     }),
@@ -660,7 +660,7 @@ CPU
 
     it("Snefru", () => {
         assert.strictEqual(
-            chef.snefru("demeaning milestone").toString(),
+            chef.snefru("demeaning milestone", {size: 256, rounds: 8}).toString(),
             "a671b48770fe073ce49e9259cc2f47d345a53712639f8ae23c5ad3fec19540a5");
     }),
 
@@ -842,6 +842,60 @@ ExifImageHeight: 57`);
         });
 
         assert.equal(output, res.value);
+    }),
+
+    it("performs MAGIC", async () => {
+        const input = "WUagwsiae6mP8gNtCCLUFpCpCB26RmBDoDD8PacdAmzAzBVjkK2QstFXaKhpC6iUS7RHqXrJtFisoRSgoJ4whjm1arm864qaNq4RcfUmLHrcsAaZc5TXCYifNdgS83gDeejGX46gaiMyuBV6EskHt1scgJ88x2tNSotQDwbGY1mmCob2ARGFvCKYNqiN9ipMq1ZU1mgkdbNuGcb76aRtYWhCGUc8g93UJudhb8htsheZnwTpgqhx83SVJSZXMXUjJT2zmpC7uXWtumqokbdSi88YtkWDAc1Toouh2oH4D4ddmNKJWUDpMwmngUmK14xwmomccPQE9hM172APnSqwxdKQ172RkcAsysnmj5gGtRmVNNh2s359wr6mS2QRP";
+        const depth = 1;
+
+        const res = await chef.magic(input, {
+            depth,
+        });
+
+        // assert against the structure of the output, rather than the values.
+        assert.strictEqual(res.value.length, depth + 1);
+        res.value.forEach(row => {
+            assert.ok(row.recipe);
+            assert.ok(row.data);
+            assert.ok(row.languageScores);
+            assert.ok(Object.prototype.hasOwnProperty.call(row, "fileType")); // Can be null, so cannot just use ok
+            assert.ok(row.entropy);
+            assert.ok(row.matchingOps);
+            assert.ok(Object.prototype.hasOwnProperty.call(row, "useful"));
+            assert.ok(Object.prototype.hasOwnProperty.call(row, "matchesCrib"));
+
+            row.recipe.forEach(item => {
+                assert.ok(Object.prototype.hasOwnProperty.call(item, "op"),  `No 'op' property in item ${item}`);
+                assert.strictEqual(typeof item.op, "string");
+                assert.ok(Object.prototype.hasOwnProperty.call(item, "args"),  `No 'args' property in item ${item}`);
+                assert.ok(Array.isArray(item.args));
+            });
+
+            row.languageScores.forEach(score => {
+                assert.ok(Object.prototype.hasOwnProperty.call(score, "lang"), `No 'lang' property in languageScore ${score}`);
+                assert.strictEqual(typeof score.lang, "string");
+                assert.ok(Object.prototype.hasOwnProperty.call(score, "score"),  `No 'score' property in languageScore ${score}`);
+                assert.strictEqual(typeof score.score, "number");
+                assert.ok(Object.prototype.hasOwnProperty.call(score, "probability"),  `No 'probability' property in languageScore ${score}`);
+                assert.strictEqual(typeof score.probability, "number");
+            });
+
+            row.matchingOps.forEach(op => {
+                assert.ok(Object.prototype.hasOwnProperty.call(op, "op"), `No 'op' property in matchingOp ${JSON.stringify(op)}`);
+                assert.strictEqual(typeof op.op, "string");
+                assert.ok(Object.prototype.hasOwnProperty.call(op, "pattern"), `No 'pattern' property in matchingOp ${JSON.stringify(op)}`);
+                assert.ok(op.pattern instanceof RegExp);
+                assert.ok(Object.prototype.hasOwnProperty.call(op, "args"), `No 'args' property in matchingOp ${JSON.stringify(op)}`);
+                assert.ok(Array.isArray(op.args));
+                assert.ok(Object.prototype.hasOwnProperty.call(op, "useful"), `No 'useful' property in matchingOp ${JSON.stringify(op)}`);
+                assert.ifError(op.useful); // Expect this to be undefined
+                assert.ok(Object.prototype.hasOwnProperty.call(op, "entropyRange"), `No 'entropyRange' property in matchingOp ${JSON.stringify(op)}`);
+                assert.ifError(op.entropyRange); // Expect this to be undefined
+                assert.ok(Object.prototype.hasOwnProperty.call(op, "output"), `No 'output' property in matchingOp ${JSON.stringify(op)}`);
+                assert.ifError(op.output); // Expect this to be undefined
+            });
+        });
+
     }),
 
 

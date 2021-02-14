@@ -8,7 +8,7 @@
 import Utils, { debounce } from "../../core/Utils.mjs";
 import Dish from "../../core/Dish.mjs";
 import FileSaver from "file-saver";
-import ZipWorker from "worker-loader?inline&fallback=false!../workers/ZipWorker.mjs";
+import ZipWorker from "worker-loader?inline=no-fallback!../workers/ZipWorker.mjs";
 
 /**
   * Waiter to handle events related to the output
@@ -306,8 +306,6 @@ class OutputWaiter {
                     outputText.value = "";
                     outputHtml.innerHTML = "";
 
-                    lines = 0;
-                    length = 0;
                     this.toggleLoader(false);
                     return;
                 }
@@ -765,7 +763,7 @@ class OutputWaiter {
         const func = function(time) {
             if (this.mousedown) {
                 this.changeTabRight();
-                const newTime = (time > 50) ? time = time - 10 : 50;
+                const newTime = (time > 50) ? time - 10 : 50;
                 setTimeout(func.bind(this, [newTime]), newTime);
             }
         };
@@ -782,7 +780,7 @@ class OutputWaiter {
         const func = function(time) {
             if (this.mousedown) {
                 this.changeTabLeft();
-                const newTime = (time > 50) ? time = time - 10 : 50;
+                const newTime = (time > 50) ? time - 10 : 50;
                 setTimeout(func.bind(this, [newTime]), newTime);
             }
         };

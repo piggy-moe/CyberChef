@@ -34,11 +34,20 @@ const banner = `/**
 
 
 module.exports = {
+    output: {
+        publicPath: "",
+        globalObject: "this"
+    },
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
-            log: "loglevel"
+            log: "loglevel",
+            // process and Buffer are no longer polyfilled in webpack 5 but
+            // many of our dependencies expect them, so it is easiest to just
+            // provide them everywhere as was the case in webpack 4-
+            process: "process",
+            Buffer: ["buffer", "Buffer"]
         }),
         new webpack.BannerPlugin({
             banner: banner,
@@ -46,29 +55,42 @@ module.exports = {
             entryOnly: true
         }),
         new webpack.DefinePlugin({
+            // Required by Jimp to improve loading speed in browsers
             "process.browser": "true"
         }),
         new MiniCssExtractPlugin({
             filename: "assets/[name].css"
         }),
-        new CopyWebpackPlugin([
-            {
-                context: "src/core/vendor/",
-                from: "tesseract/**/*",
-                to: "assets/"
-            }
-        ])
+        new CopyWebpackPlugin({
+            patterns: [{
+                context: "node_modules/node-forge/dist",
+                from: "prime.worker.min.js",
+                to: "assets/forge/"
+            }]
+        })
     ],
     resolve: {
+        extensions: [".mjs", ".js", ".json"], // Allows importing files without extensions
         alias: {
             jquery: "jquery/src/jquery",
         },
+        fallback: {
+            "fs": false,
+            "child_process": false,
+            "net": false,
+            "tls": false,
+            "path": require.resolve("path/"),
+            "buffer": require.resolve("buffer/"),
+            "crypto": require.resolve("crypto-browserify"),
+            "stream": require.resolve("stream-browserify"),
+            "zlib": require.resolve("browserify-zlib")
+        }
     },
     module: {
         rules: [
             {
                 test: /\.m?js$/,
-                exclude: /node_modules\/(?!jsesc|crypto-api|bootstrap)/,
+                exclude: /node_modules\/(?!crypto-api|bootstrap)/,
                 options: {
                     configFile: path.resolve(__dirname, "babel.config.js"),
                     cacheDirectory: true,
@@ -78,12 +100,30 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: /forge.min.js$/,
-                loader: "imports-loader?jQuery=>null"
+                test: /node-forge/,
+                loader: "imports-loader",
+                options: {
+                    additionalCode: "var jQuery = false;"
+                }
+            },
+            {
+                test: /prime.worker.min.js$/,
+                use: "raw-loader"
             },
             {
                 test: /bootstrap-material-design/,
-                loader: "imports-loader?Popper=popper.js/dist/umd/popper.js"
+                loader: "imports-loader",
+                options: {
+                    imports: "default popper.js/dist/umd/popper.js Popper"
+                }
+            },
+            {
+                test: /blueimp-load-image/,
+                loader: "imports-loader",
+                options: {
+                    type: "commonjs",
+                    imports: "single min-document document"
+                }
             },
             {
                 test: /\.css$/,
@@ -172,12 +212,6 @@ module.exports = {
             /export 'default'/,
             /Can't resolve 'sodium'/
         ],
-    },
-    node: {
-        fs: "empty",
-        "child_process": "empty",
-        net: "empty",
-        tls: "empty"
     },
     performance: {
         hints: false

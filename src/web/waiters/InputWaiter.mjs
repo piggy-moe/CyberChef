@@ -5,8 +5,8 @@
  * @license Apache-2.0
  */
 
-import LoaderWorker from "worker-loader?inline&fallback=false!../workers/LoaderWorker.js";
-import InputWorker from "worker-loader?inline&fallback=false!../workers/InputWorker.mjs";
+import LoaderWorker from "worker-loader?inline=no-fallback!../workers/LoaderWorker.js";
+import InputWorker from "worker-loader?inline=no-fallback!../workers/InputWorker.mjs";
 import Utils, { debounce } from "../../core/Utils.mjs";
 import { toBase64 } from "../../core/lib/Base64.mjs";
 import { isImage } from "../../core/lib/FileType.mjs";
@@ -510,10 +510,6 @@ class InputWaiter {
         if (inputNum !== activeTab) return;
 
         const fileLoaded = document.getElementById("input-file-loaded");
-        let oldProgress = fileLoaded.textContent;
-        if (oldProgress !== "Error") {
-            oldProgress = parseInt(oldProgress.replace("%", ""), 10);
-        }
         if (progress === "error") {
             fileLoaded.textContent = "Error";
             fileLoaded.style.color = "#FF0000";
@@ -1276,7 +1272,7 @@ class InputWaiter {
         const func = function(time) {
             if (this.mousedown) {
                 this.changeTabRight();
-                const newTime = (time > 50) ? time = time - 10 : 50;
+                const newTime = (time > 50) ? time - 10 : 50;
                 setTimeout(func.bind(this, [newTime]), newTime);
             }
         };
@@ -1293,7 +1289,7 @@ class InputWaiter {
         const func = function(time) {
             if (this.mousedown) {
                 this.changeTabLeft();
-                const newTime = (time > 50) ? time = time - 10 : 50;
+                const newTime = (time > 50) ? time - 10 : 50;
                 setTimeout(func.bind(this, [newTime]), newTime);
             }
         };

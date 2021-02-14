@@ -170,11 +170,16 @@ class Utils {
      *
      * @param {string} str - The input string to display.
      * @param {boolean} [preserveWs=false] - Whether or not to print whitespace.
+     * @param {boolean} [onlyAscii=false] - Whether or not to replace non ASCII characters.
      * @returns {string}
      */
-    static printable(str, preserveWs=false) {
+    static printable(str, preserveWs=false, onlyAscii=false) {
         if (isWebEnvironment() && window.app && !window.app.options.treatAsUtf8) {
             str = Utils.byteArrayToChars(Utils.strToByteArray(str));
+        }
+
+        if (onlyAscii) {
+            return str.replace(/[^\x20-\x7f]/g, ".");
         }
 
         // eslint-disable-next-line no-misleading-character-class
@@ -704,8 +709,21 @@ class Utils {
      * Utils.stripHtmlTags("<div>Test</div>");
      */
     static stripHtmlTags(htmlStr, removeScriptAndStyle=false) {
+        /**
+         * Recursively remove a pattern from a string until there are no more matches.
+         * Avoids incomplete sanitization e.g. "aabcbc".replace(/abc/g, "") === "abc"
+         *
+         * @param {RegExp} pattern
+         * @param {string} str
+         * @returns {string}
+         */
+        function recursiveRemove(pattern, str) {
+            const newStr = str.replace(pattern, "");
+            return newStr.length === str.length ? newStr : recursiveRemove(pattern, newStr);
+        }
+
         if (removeScriptAndStyle) {
-            htmlStr = htmlStr.replace(/<(script|style)[^>]*>.*<\/(script|style)>/gmi, "");
+            htmlStr = recursiveRemove(/<(script|style)[^>]*>.*?<\/(script|style)>/gi, htmlStr);
         }
         return htmlStr.replace(/<[^>]+>/g, "");
     }
@@ -729,11 +747,10 @@ class Utils {
             ">": "&gt;",
             '"': "&quot;",
             "'": "&#x27;", // &apos; not recommended because it's not in the HTML spec
-            "/": "&#x2F;", // forward slash is included as it helps end an HTML entity
             "`": "&#x60;"
         };
 
-        return str.replace(/[&<>"'/`]/g, function (match) {
+        return str.replace(/[&<>"'`]/g, function (match) {
             return HTML_CHARS[match];
         });
     }
@@ -879,7 +896,7 @@ class Utils {
         while ((m = recipeRegex.exec(recipe))) {
             // Translate strings in args back to double-quotes
             args = m[2]
-                .replace(/"/g, '\\"') // Escape double quotes
+                .replace(/"/g, '\\"') // Escape double quotes // lgtm [js/incomplete-sanitization]
                 .replace(/(^|,|{|:)'/g, '$1"') // Replace opening ' with "
                 .replace(/([^\\]|(?:\\\\)+)'(,|:|}|$)/g, '$1"$2') // Replace closing ' with "
                 .replace(/\\'/g, "'"); // Unescape single quotes
